@@ -3,23 +3,30 @@
 	<div class="col-xs-12">
 		<h2 class="white">Home</h2>
 		<hr />
-		<h4 class="white">Add New Movie</h4>
-		<%= form_for @movie, class: 'form-horizontal' do |m| %>
-			<div class="form-group">
-				<label for="title" class="white">Title: </label><br/>
-				<%= m.text_field :title,  class: 'form-control' %>
-			</div>
-			<div class="form-group"> 
-				<label for="title" class="white">Year: </label><br/>
-				<%= m.text_field :year, class: 'form-control' %>
-			</div>
-			<div class="form-group">
-				<%= m.submit class: 'button' %> 
-			<div class="form-group">
-		<% end %>
 	</div>	
 </div>
+<div class="row">
+	
+		
 
+		<div class="col-md-6">
+			<h4 class="white">Add New Movie</h4>
+			<%= form_for @movie, class: 'form-horizontal' do |m| %>
+				<div class="form-group">
+					<label for="title" class="white">Title: </label><br/>
+					<%= m.text_field :title,  class: 'form-control' %>
+				</div>
+				<div class="form-group"> 
+					<label for="title" class="white">Year: </label><br/>
+					<%= m.text_field :year, class: 'form-control' %>
+				</div>
+				<div class="form-group">
+					<%= m.submit class: 'button' %> 
+				</div>
+			<% end %>
+		</div>
+	
+</div>
 <hr />
 
 <div class="row">

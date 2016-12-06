@@ -2,13 +2,16 @@
 	<div class="col-xs-12">
 		<h2 class="white">Edit <%= @movie.title %></h2>
 		<hr> 
-
+	</div>
+	<div class="col-xs-6">
 		<%= form_for @movie, class: 'hortizontal-form' do |m| %>
 			
 			<div class="form-group">
+				<label for="title" class="white">Title</label>
 				<%= m.text_field :title, class: 'form-control' %>
 			</div>
 			<div class="form-group">
+				<label for="title" class="white">Title</label>
 				<%= m.text_field :year, class: 'form-control' %>
 			</div>
 			<div class="form-group">
