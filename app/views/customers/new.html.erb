@@ -1,0 +1,92 @@
+<div class="row">
+	<div class="col-xs-12 col-lg-10 col-lg-push-1">
+		<h2 class="white">Customers</h2>
+		<hr />
+		<h4 class="white">Add New Customer</h4>
+		<%= form_for @customer, class: 'form-horizontal' do |m| %>
+			<div class="form-group">
+				<label class="white">First Name: </label><br/>
+				<%= m.text_field :fname,  class: 'form-control' %>
+			</div>
+			<div class="form-group"> 
+				<label for="lname" class="white">Last Name:</label><br/>
+				<%= m.text_field :lname, class: 'form-control' %>
+			</div>
+			<div class="form-group"> 
+				<label for="email" class="white">Email: </label><br/>
+				<%= m.text_field :email, class: 'form-control' %>
+			</div>
+			<div class="form-group"> 
+				<label for="telephone" class="white">Telephone: </label><br/>
+				<%= m.text_field :telephone, class: 'form-control' %>
+			</div>
+			<div class="form-group">
+				<%= m.submit class: 'button' %> 
+			<div class="form-group">
+		<% end %>
+		<br />
+	</div>	
+</div>
+<hr />
+<div class="row">
+	<div class="col-xs-12">
+	<h4 class="white">Customer Database</h4>
+		<label class="white">Search by Last Name: </label>
+		<%= form_tag new_customer_path, :method=> 'get' do %>
+			<%= text_field_tag :search, params[:search], class: "search_input" %>
+			<%= submit_tag "Search", class: "button"  %>
+		<% end %>
+		<br />
+		<% if @customers.exists? %>
+		<div class="bg_white">
+			<table class="table table-hover table-striped">
+			<tr>
+				<th>
+					Fist 
+				</th>
+				<th>
+					Last
+				</th>
+				<th>
+					Show
+				</th>
+				<th>
+					Delete
+				</th>
+				<th>
+					Edit
+				</th>
+			</tr>
+			<% @customers.order(lname: :asc).each do |m| %>
+			<tr>
+				<td>
+					<%= m.fname %> 
+				</td> 
+				<td>
+					<%= m.lname %>
+				</td> 
+				<td>
+					<%= link_to "Show", customer_path(m) %>
+				</td>
+				<td> 
+					<%= link_to "Delete", customer_path(m), method: :delete, data: {confirm: 'Are you sure?'} %>
+				</td>  
+				<td>
+					<%= link_to "Edit", edit_customer_path(m) %>
+				</td>  
+			</tr>
+			<% end %>
+			</table>
+		</div>
+		<%= will_paginate @customers, class: 'white' %>
+		<% else %>
+			<p class="white"><i>No customers have been entered</i></p>
+			<br />
+		<% end %> 
+		<br />
+		<br />
+		<br />
+		<br />
+	</div>	
+</div>
+

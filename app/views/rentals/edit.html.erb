@@ -1,0 +1,25 @@
+<div class="row">
+	<div class="col-xs-12">
+		<h2 class="white">Edit <%= @movie.title %> Rental</h2>
+		<hr> 
+		<%= form_for [@movie, @rental], class: 'hortizontal-form' do |r| %>
+			<div class="form-group">
+				<label for="borrowed_on" class="white">Borrowed on:</label>
+				<%= r.text_field :borrowed_on, class: 'form-control' %>
+			</div>
+			<div class="form-group">
+				<label for="returned_on" class="white">Returned on:</label>
+				<%= r.text_field :returned_on, class: 'form-control' %>
+			</div>
+			<div class="form-group" class='white'> 
+				<label for="renturned_on" class='white'>Customer:</label><br />
+				<%= r.collection_select :customer_id, Customer.all, :id, :full_name, class: 'form-control' %>
+			</div> 
+			<div class="form-group">
+				<%= r.submit class: 'button' %>
+			</div>
+		<% end %> 
+		<br />
+		<%= link_to "Home", edit_movie_path(@movie), class: 'white' %> 
+	</div>
+</div>

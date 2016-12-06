@@ -1,0 +1,100 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+$nav: #3a3a3a; 
+
+body { 
+    background-image: url('background.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+nav {
+ 	border: $nav !important; 
+	border-radius: 0px !important; 
+	background-color: $nav  !important;
+	a {
+		color: white !important; 
+		background-color: $nav  !important;
+	} 
+	.collapsed {
+		border: 1px solid $nav  !important;
+	}
+	.collapsed:hover {
+		background: $nav !important;
+	}
+}
+
+.bg_white {
+	background: white;
+}
+.button {
+	border: 0px; 
+	padding: 7px 15px;
+	background-color: #464747 !important;
+	color: white !important;
+	border-radius: 5px !important;
+}
+.grey {
+	color: #adadad !important;
+	text-decoration: underline;
+}
+.grey:hover {
+	color: #adadad !important;
+}
+.icon-bar {
+	background: white !important; 
+}
+.navbar {
+	padding: 10px;
+}
+/***pagination***/
+  .previous_page { color:white }
+  .previous_page:hover { color:white }
+  .previous_page.disabled { color: white }
+  .current { color:white }
+  .next_page { color: white }
+  .next_page:hover { color: white }
+  .next_page.disabled { color: white }
+/****************/
+
+
+.red {
+	background: #ffcbcb; 
+}
+.red:hover {
+	background: #fdc9c9 !important; 
+}
+.search_input {
+	width: 25%; 
+	border: 0px; 
+	border-radius: 4px !important; 
+	padding: 6px; 
+	margin-right: 12px; 
+}
+.thin {
+	font-weight: 100; 
+}
+.white {
+	color: white !important;
+}
+.white:hover {
+	color: white !important;
+}
+
+
+

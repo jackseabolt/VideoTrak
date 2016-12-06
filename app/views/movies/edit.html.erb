@@ -1,0 +1,21 @@
+<div class="row">
+	<div class="col-xs-12">
+		<h2 class="white">Edit <%= @movie.title %></h2>
+		<hr> 
+
+		<%= form_for @movie, class: 'hortizontal-form' do |m| %>
+			
+			<div class="form-group">
+				<%= m.text_field :title, class: 'form-control' %>
+			</div>
+			<div class="form-group">
+				<%= m.text_field :year, class: 'form-control' %>
+			</div>
+			<div class="form-group">
+				<%= m.submit class: 'button' %>
+			</div>
+		<% end %> 
+		<br />
+		<%= link_to "Home", root_path, class: 'white' %> 
+	</div>
+</div>

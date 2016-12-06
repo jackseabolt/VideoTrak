@@ -1,0 +1,86 @@
+<h2 class="white"><%= @movie.title %></h2>
+<hr />
+<h4 class='white'>New Rental</h4>
+<%= form_for @rental, :url => {:action =>:create, :id => @movie.id }, class: "form-horizontal" do |r| %>
+<div class="form-group"> 
+ 	<label for="borrowed_on" class='white'>Borrowed on:</label><br />
+	<%= r.text_field :borrowed_on, placeholder: "xx/xx/xxxx", class: 'form-control' %>
+</div>
+<div class="form-group" class='white'> 
+	<label for="renturned_on" class='white'>Returned on:</label><br />
+	<%= r.text_field :returned_on, placeholder: "xx/xx/xxxx", class: 'form-control' %>
+</div> 
+<div class="form-group" class='white'> 
+	<label for="renturned_on" class='white'>Customer:</label><br />
+	<%= r.collection_select :customer_id, @customers, :id, :full_name, class: 'form-control' %>
+</div> 
+<div class="form-group"> 
+	<%= r.submit class: 'button' %> 
+</div>
+<% end %> 
+
+	<hr> 
+	<h4 class='white'>Rental Records</h4>
+	<p class="white"><b>Purchased: </b><%= @movie.created_at.to_formatted_s(:long) %> </p>
+	<p class="white"><b>Total Rentals: </b><%= @rentals.count %> </p>
+	<br />
+<% if @movie.rentals.exists? %>
+<div class="bg_white">
+	<table class="table table-hover table-striped">
+		<tr>
+			<th>Borrowed</th>
+			<th>Returned</th>
+			<th>Customer</th>
+			<th></th>
+			<th></th>
+		</tr>
+		<% for r in @movie.rentals.order(borrowed_on: :desc) %> 
+			<% if !r.borrowed_on.nil? %>
+				<% if r.returned_on.nil? %>
+					<tr class="red">
+						<td>
+							<%= r.borrowed_on %>
+						</td>
+						<td>
+							<%= r.returned_on %> 
+						</td>
+						<td>
+							<%= link_to r.customer.full_name, customer_path(r.customer_id) %>
+						</td>
+						<td>
+							<%= link_to "Update", edit_movie_rental_path(@movie, r) %> 
+						</td>
+						<td>
+							<%= link_to "Delete", movie_rental_path(@movie, r), method: :delete %> 
+						</td>
+					</tr>
+
+				<% else %>
+					<tr>
+						<td>
+							<%= r.borrowed_on %>
+						</td>
+						<td>
+							<%= r.returned_on %> 
+						</td>
+						<td>
+							<%= link_to r.customer.full_name, customer_path(r.customer_id) %>
+						</td>
+						<td>
+							<%= link_to "Update", edit_movie_rental_path(@movie, r) %> 
+						</td>
+						<td>
+							<%= link_to "Delete", movie_rental_path(@movie, r), method: :delete %> 
+						</td>
+					</tr>
+				<% end %>	
+			<% end %>
+		<% end %> 
+	</table>
+</div>
+<% else %>
+	<p class="white"><i>No rentals to show</i><br /><br /></p>
+<% end %>
+
+<br /><br />
+<br /><br />

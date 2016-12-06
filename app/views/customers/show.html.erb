@@ -1,0 +1,81 @@
+<div class="row">
+	<div class="col-xs-12">
+		<h2 class="white"><%= @customer.full_name %></h2>
+		<hr> 
+		<br />
+		<h4 class="white">Contact Information</h4>
+		<p class="white"><b>Telephone: </b><%= @customer.telephone %> </p>
+		<p class="white"><b>Email: </b><%= @customer.email %> </p>
+		<%= link_to "Edit", edit_customer_path(@customer), class: "grey" %>
+		<br /><br />
+		<h4 class="white">Rental Information</h4>
+		<p class="white"><b>Customer Since: </b><%= @customer.created_at.to_formatted_s(:long) %> </p>
+		<p class="white"><b>Total Rentals: </b><%= @customer.rentals.count %> </p>
+		<br />
+
+
+		<% if @customer.rentals.exists? %>
+			<div class="bg_white">
+				<table class="table table-hover table-striped">
+					<tr>
+						<th>Title</th>
+						<th>Borrowed</th>
+						<th>Returned</th>
+						<th></th>
+						<th></th>
+					</tr>
+					<% for r in @customer.rentals.order(borrowed_on: :desc) %> 
+						<% if !r.borrowed_on.nil? %>
+							<% if r.returned_on.nil? %>
+								<tr class="red">
+									<td>
+										<%= link_to r.movie.title, new_movie_rental_path(r.movie, r) %>
+									</td>
+									<td>
+										<%= r.borrowed_on %>
+									</td>
+									<td>
+										<%= r.returned_on %> 
+									</td>
+									<td>
+										<%= link_to "Update", edit_movie_rental_path(r.movie, r) %> 
+									</td>
+									<td>
+										<%= link_to "Delete", movie_rental_path(r.movie, r), method: :delete %> 
+									</td>
+								</tr>
+
+							<% else %>
+								<tr>
+									<td>
+										<%= link_to r.movie.title, new_movie_rental_path(r.movie, r) %>
+									</td>
+									<td>
+										<%= r.borrowed_on %>
+									</td>
+									<td>
+										<%= r.returned_on %> 
+									</td>
+									<td>
+										<%= link_to "Update", edit_movie_rental_path(r.movie, r) %> 
+									</td>
+									<td>
+										<%= link_to "Delete", movie_rental_path(r.movie, r), method: :delete %> 
+									</td>
+								</tr>
+							<% end %>	
+						<% end %>
+					<% end %> 
+				</table>
+			</div>
+			<% else %>
+				<p class="white"><i>No rentals to show</i><br /><br /></p>
+			<% end %>
+			<br />
+			<br />
+			<br />
+			<br />
+
+		</div>	
+
+</div>

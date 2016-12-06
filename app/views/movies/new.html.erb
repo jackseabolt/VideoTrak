@@ -1,0 +1,83 @@
+
+<div class="row">
+	<div class="col-xs-12">
+		<h2 class="white">Home</h2>
+		<hr />
+		<h4 class="white">Add New Movie</h4>
+		<%= form_for @movie, class: 'form-horizontal' do |m| %>
+			<div class="form-group">
+				<label for="title" class="white">Title: </label><br/>
+				<%= m.text_field :title,  class: 'form-control' %>
+			</div>
+			<div class="form-group"> 
+				<label for="title" class="white">Year: </label><br/>
+				<%= m.text_field :year, class: 'form-control' %>
+			</div>
+			<div class="form-group">
+				<%= m.submit class: 'button' %> 
+			<div class="form-group">
+		<% end %>
+	</div>	
+</div>
+
+<hr />
+
+<div class="row">
+	<div class="col-xs-12">
+	<h4 class="white">Movie Database</h4>
+	<label class="white">Search by Title: </label>
+	<%= form_tag new_movie_path, :method=> 'get' do %>
+		<%= text_field_tag :search, params[:search], class: "search_input" %>
+		<%= submit_tag "Search", class: "button" %>
+	<% end %>
+	<br />
+		<% if @movies.exists? %>
+		<div class="bg_white">
+			<table class="table table-hover table-striped">
+			<tr>
+				<th>
+					Title
+				</th>
+				<th>
+					Status
+				</th>
+				<th>
+					Year
+				</th>
+				<th>
+					Delete
+				</th>
+				<th>
+					Edit
+				</th>
+			</tr>
+			<% @movies.each do |m| %>
+			<tr>
+				<td>
+					<%= link_to m.title, new_movie_rental_path(m) %>
+				</td> 
+				<td> 
+					<%= m.status %>
+				</td>
+				<td>
+					<%= m.year %>
+				</td>   
+				<td> 
+					<%= link_to "Delete", movie_path(m), method: :delete %>
+				</td>  
+				<td>
+					<%= link_to "Edit", edit_movie_path(m) %>
+				</td>  
+			</tr>
+			<% end %>
+			</table>
+		</div>
+		<%= will_paginate @movies, :page_links => false %>
+		<% else %>
+			<p class="white">No movies have been entered</p>
+		<% end %> 
+		<br /><br />
+	</div>	
+</div>
+
+<br /><br />
