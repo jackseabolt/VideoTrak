@@ -16,7 +16,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-$nav: #3a3a3a; 
+$nav: #2e2e2e; 
 
 body { 
     background-image: image-url('background.jpg');
@@ -51,6 +51,7 @@ nav {
 }
 .devise {
 	padding-top: 50px; 
+	padding-bottom: 200px;
 }
 .grey {
 	color: #adadad !important;
@@ -61,6 +62,10 @@ nav {
 }
 .icon-bar {
 	background: white !important; 
+}
+.large_logo {
+	font-size: 60px !important; 
+	margin-bottom: 30px; 
 }
 .navbar {
 	padding: 10px;
@@ -99,5 +104,9 @@ nav {
 	color: white !important;
 }
 
-
+@media screen and (max-width: 900px) {
+	.devise {
+		padding-top: 30px; 
+	}
+}
 
